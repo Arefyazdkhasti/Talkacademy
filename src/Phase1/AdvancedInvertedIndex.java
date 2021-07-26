@@ -10,7 +10,6 @@ public class AdvancedInvertedIndex {
 
     public static void main(String[] args) throws IOException {
 
-
         List<MyFile> files = new ArrayList<>();
         AdvancedIndex advancedIndex = new AdvancedIndex();
         Log log = new Log();

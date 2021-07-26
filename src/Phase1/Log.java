@@ -11,7 +11,6 @@ class Log {
         System.out.println("Info-> " + str);
     }
 
-
     void logCatchExe(String str) {
         System.out.println("Catch Exception-> " + str);
     }

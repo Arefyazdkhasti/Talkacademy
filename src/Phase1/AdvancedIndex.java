@@ -32,6 +32,7 @@ class AdvancedIndex extends Index {
         printAdvancedSearchResult();
     }
 
+
     private void discoverWords(String[] words, List<String> finalWords) {
         for (String item : words) {
             switch (item.charAt(0)) {

@@ -5,7 +5,6 @@ class MyFile {
     private String file;
     private int fileNumber;
 
-
     MyFile(String file, int fileNumber){
         this.file = file;
         this.fileNumber = fileNumber;

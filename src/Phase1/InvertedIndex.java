@@ -8,6 +8,7 @@ public class InvertedIndex {
     static final String FILE_LOCATION = "C:\\Users\\Acer\\IdeaProjects\\talkademy\\EnglishData\\";
 
 
+
     public static void main(String[] args) throws IOException {
 
         List<MyFile> files = new ArrayList<>();

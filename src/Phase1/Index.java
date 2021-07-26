@@ -17,6 +17,7 @@ class Index {
      List<Integer> hatedSources = new ArrayList<>();
      List<Integer> searchesSources = new ArrayList<>();
 
+
     Index() {
         sources = new HashMap<>();
         index = new HashMap<>();
