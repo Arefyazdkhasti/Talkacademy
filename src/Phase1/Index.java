@@ -1,12 +1,15 @@
 package Phase1;
 
 
+import Phase1.utility.Log;
+
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-class Index {
+public class Index {
       Log log = new Log();
 
      HashMap<String, HashSet<Integer>> index;
@@ -21,14 +24,7 @@ class Index {
         index = new HashMap<>();
     }
 
-    void readFiles(List<Integer> files,Index index){
-        for (int i = 57110; i <= 59652; i++) {
-            files.add(i);
-        }
-        index.buildIndex(files);
-    }
-
-    private void buildIndex(List<Integer> files) {
+    void buildIndex(List<Integer> files) {
 
         for (Integer _file : files) {
             try (BufferedReader file = new BufferedReader(new FileReader(InvertedIndex.FILE_LOCATION+""+_file))) {

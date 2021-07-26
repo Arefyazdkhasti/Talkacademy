@@ -1,21 +1,21 @@
-package Phase1;
+package Phase1.utility;
 
-class Log {
+public class Log {
 
-    /*void logError(String str) {
+    public void logError(String str) {
         System.out.println("Error-> " + str);
     }
-*/
 
-    void logInfo(String str) {
+
+    public void logInfo(String str) {
         System.out.println("Info-> " + str);
     }
 
-    void logCatchExe(String str) {
+    public void logCatchExe(String str) {
         System.out.println("Catch Exception-> " + str);
     }
 
-    void log(String str) {
+    public void log(String str) {
         System.out.println(str);
     }
 
