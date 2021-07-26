@@ -9,7 +9,6 @@ import java.util.*;
 class Index {
       Log log = new Log();
 
-     private Map<Integer, String> sources;
      HashMap<String, HashSet<Integer>> index;
 
     //advanced search list
@@ -19,23 +18,20 @@ class Index {
 
 
     Index() {
-        sources = new HashMap<>();
         index = new HashMap<>();
     }
 
-    void readFiles(List<MyFile> files,Index index){
+    void readFiles(List<Integer> files,Index index){
         for (int i = 57110; i <= 59652; i++) {
-            MyFile file = new MyFile(InvertedIndex.FILE_LOCATION + i, i);
-            files.add(file);
+            files.add(i);
         }
         index.buildIndex(files);
     }
 
-    private void buildIndex(List<MyFile> myFiles) {
+    private void buildIndex(List<Integer> files) {
 
-        for (MyFile _file : myFiles) {
-            try (BufferedReader file = new BufferedReader(new FileReader(_file.getFile()))) {
-                sources.put(_file.getFileNumber(), _file.getFile());
+        for (Integer _file : files) {
+            try (BufferedReader file = new BufferedReader(new FileReader(InvertedIndex.FILE_LOCATION+""+_file))) {
                 String ln;
                 while ((ln = file.readLine()) != null) {
                     String[] words = ln.split("\\W+");
@@ -43,31 +39,20 @@ class Index {
                     fillIndex(words,_file);
                 }
             } catch (IOException e) {
-                log.logCatchExe("File " + _file.getFileNumber() + " not found. Skip it");
+                log.logCatchExe("File " + _file + " not found. Skip it");
             }
         }
     }
 
-    private void fillIndex(String[] words, MyFile file) {
+    private void fillIndex(String[] words, Integer file) {
         for (String word : words) {
             word = word.toLowerCase();
             if (!index.containsKey(word))
                 index.put(word, new HashSet<>());
-            index.get(word).add(file.getFileNumber());
+            index.get(word).add(file);
         }
     }
 
-
-    void printSearchResult(HashSet<Integer> res,List<Integer> sourceFiles) {
-        if (res.size() == 0) {
-            log.log("Not found");
-        }
-        System.out.println("Found in: ");
-        for (int num : res) {
-            log.log("\t" + sources.get(num) + " \tFile Number:" + num);
-            sourceFiles.add(num);
-        }
-    }
 
     List<Integer> find(String phrase) {
 
@@ -76,6 +61,8 @@ class Index {
 
         try {
             HashSet<Integer> res = new HashSet<>(index.get(words[0].toLowerCase()));
+
+            //only retain index that has the word in them
             for (String word : words) {
                 res.retainAll(index.get(word));
             }
@@ -86,6 +73,17 @@ class Index {
         } catch (NullPointerException e) {
             log.logCatchExe("Not found " + e.toString());
             return null;
+        }
+    }
+
+    void printSearchResult(HashSet<Integer> res,List<Integer> sourceFiles) {
+        if (res.size() == 0) {
+            log.log("Not found");
+        }
+        System.out.println("Found in: ");
+        for (int num : res) {
+            log.log("\t\tFile Number:" + num);
+            sourceFiles.add(num);
         }
     }
 }

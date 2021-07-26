@@ -11,7 +11,7 @@ public class InvertedIndex {
 
     public static void main(String[] args) throws IOException {
 
-        List<MyFile> files = new ArrayList<>();
+        List<Integer> files = new ArrayList<>();
         Index simpleIndex = new Index();
         Log log = new Log();
 

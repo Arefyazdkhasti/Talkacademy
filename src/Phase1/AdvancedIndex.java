@@ -14,17 +14,18 @@ class AdvancedIndex extends Index {
         discoverWords(words,finalWords);
 
         //remove duplication from loved
-        removeLovedDuplicate();
+        lovedSources = removeDuplicate(lovedSources);
 
         //remove duplication from hated
-        removeHateDuplicate();
+        hatedSources = removeDuplicate(hatedSources);
 
         try {
-            HashSet<Integer> res = new HashSet<>(index.get(finalWords.get(0).toLowerCase()));
+            if (!finalWords.isEmpty()) {
+                HashSet<Integer> res = new HashSet<>(index.get(finalWords.get(0).toLowerCase()));
 
-            //print main phrase search result
-            printSearchResult(res,searchesSources);
-
+                //print main phrase search result
+                printSearchResult(res, searchesSources);
+            }
         } catch (NullPointerException e) {
             log.logCatchExe("Not found " + e.toString());
         }
@@ -59,16 +60,11 @@ class AdvancedIndex extends Index {
         }
     }
 
-    private void removeLovedDuplicate() {
-        Set<Integer> lovedSet = new HashSet<>(lovedSources);
-        lovedSources.clear();
-        lovedSources.addAll(lovedSet);
-    }
-
-    private void removeHateDuplicate() {
-        Set<Integer> hatedSet = new HashSet<>(hatedSources);
-        lovedSources.clear();
-        lovedSources.addAll(hatedSet);
+    private List<Integer> removeDuplicate(List<Integer> list) {
+        List<Integer> result = new ArrayList<>(list);
+        list.clear();
+        result.addAll(list);
+        return result;
     }
 
     private void printAdvancedSearchResult() {
@@ -80,7 +76,7 @@ class AdvancedIndex extends Index {
             if (!result.contains(i))
                 result.add(i);
         }
-        //remove hatedSource frm result
+        //remove hatedSource from result
         for (Integer i : hatedSources) {
             result.remove(i);
         }
