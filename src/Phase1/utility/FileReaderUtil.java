@@ -4,23 +4,25 @@ import Phase1.Index;
 import Phase1.InvertedIndex;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FileReaderUtil {
 
-    private Log log=new Log();
+    public static final String FILE_LOCATION = "EnglishData\\";
 
-    public List<Integer> readFiles(List<Integer> files){
-        File folder = new File(InvertedIndex.FILE_LOCATION);
+    public static List<String> readFiles() {
+        List<String> files = new ArrayList<>();
+        File folder = new File(FILE_LOCATION);
         File[] listOfFiles = folder.listFiles();
         if (listOfFiles != null) {
             for (File file : listOfFiles) {
                 if (file.isFile()) {
-                    files.add(Integer.valueOf(file.getName()));
+                    files.add(file.getName());
                 }
             }
-        }else{
-            log.logError("There is no file in this directory");
+        } else {
+            Log.logError("There is no file in this directory");
         }
         return files;
     }

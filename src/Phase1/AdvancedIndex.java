@@ -1,17 +1,27 @@
 package Phase1;
 
 
+import Phase1.utility.Log;
+
 import java.util.*;
+import java.util.stream.Collectors;
 
 class AdvancedIndex extends Index {
+    //advanced search list
+    private List<String> lovedSources = new ArrayList<>();
+    private List<String> hatedSources = new ArrayList<>();
+    private List<String> searchesSources = new ArrayList<>();
+
+    //const values
+    private static final char PLUS = '+';
+    private static final char MINUS = '-';
 
     void findAdvanced(String phrase) {
+        if (phrase == null) return;
 
         String[] words = phrase.split(" ");
         //words without + and -
-        List<String> finalWords = new ArrayList<>();
-
-        discoverWords(words,finalWords);
+        List<String> finalWords = discoverWords(words);
 
         //remove duplication from loved
         lovedSources = removeDuplicate(lovedSources);
@@ -21,70 +31,74 @@ class AdvancedIndex extends Index {
 
         try {
             if (!finalWords.isEmpty()) {
-                HashSet<Integer> res = new HashSet<>(index.get(finalWords.get(0).toLowerCase()));
+                HashSet<String> res = new HashSet<>(index.get(finalWords.get(0).toLowerCase()));
 
                 //print main phrase search result
                 printSearchResult(res, searchesSources);
             }
         } catch (NullPointerException e) {
-            log.logCatchExe("Not found " + e.toString());
+            Log.logCatchExe("Not found " + e.toString());
+            //TODO what is the problem
+            e.printStackTrace();
         }
 
         printAdvancedSearchResult();
     }
 
 
-    private void discoverWords(String[] words, List<String> finalWords) {
+    private List<String> discoverWords(String[] words) {
+
+        List<String> finalWords = new ArrayList<>();
         for (String item : words) {
-            switch (item.charAt(0)) {
-                case '+':
-                    log.logInfo("+ =>" + item);
-                    //remove + from item and add to loved
-                    List<Integer> love = find(item.substring(1));
-                    if (love != null)
-                        lovedSources.addAll(love);
-                    break;
+            if (item != null) {
+                switch (item.charAt(0)) {
+                    case PLUS:
+                        Log.logInfo("+ =>" + item);
+                        //remove + from item and add to loved
+                        List<String> love = find(item.substring(1));
+                        if (love != null)
+                            lovedSources.addAll(love);
+                        break;
 
-                case '-':
-                    log.logInfo("- =>" + item);
-                    //remove - from item and add to hated
-                    List<Integer> hate = find(item.substring(1));
-                    if (hate != null)
-                        hatedSources.addAll(hate);
-                    break;
+                    case MINUS:
+                        Log.logInfo("- =>" + item);
+                        //remove - from item and add to hated
+                        List<String> hate = find(item.substring(1));
+                        if (hate != null)
+                            hatedSources.addAll(hate);
+                        break;
 
-                default:
-                    finalWords.add(item);
-                    break;
+                    default:
+                        finalWords.add(item);
+                        break;
+                }
             }
         }
+        return finalWords;
     }
 
-    private List<Integer> removeDuplicate(List<Integer> list) {
-        List<Integer> result = new ArrayList<>(list);
-        list.clear();
-        result.addAll(list);
+    private List<String> removeDuplicate(List<String> list) {
+        //remove duplication
+        List<String> result = list.stream().distinct().collect(Collectors.toList());;
         return result;
     }
 
     private void printAdvancedSearchResult() {
         //make result list
-        List<Integer> result = new ArrayList<>(searchesSources);
+        List<String> result = new ArrayList<>(searchesSources);
 
         //check to add if lovedSources didnt exist
-        for (Integer i : lovedSources) {
+        for (String i : lovedSources) {
             if (!result.contains(i))
                 result.add(i);
         }
         //remove hatedSource from result
-        for (Integer i : hatedSources) {
-            result.remove(i);
-        }
+        result.removeAll(hatedSources);
 
-        log.log("Final search result:");
+        Log.log("Final search result:");
         //print result
-        for (Integer sourceFile : result) {
-            log.log("\t" + sourceFile);
+        for (String sourceFile : result) {
+            Log.log("\t" + sourceFile);
         }
     }
 }
