@@ -1,7 +1,7 @@
 package Phase1.utility;
 
 
-public class Log {
+public class LogUtils {
 
     public static void logError(String str) {
         System.out.println("Error-> " + str);

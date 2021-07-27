@@ -1,8 +1,6 @@
 package Phase1;
 
-import Phase1.utility.ExitUtils;
-import Phase1.utility.FileReaderUtil;
-import Phase1.utility.Log;
+import Phase1.utility.*;
 
 import java.io.*;
 import java.util.*;
@@ -24,11 +22,11 @@ public class InvertedIndex {
         List<String> fileList = FileReaderUtil.readFiles();
 
         //choose type
-        Log.log(CHOOSE_TYPE);
+        LogUtils.log(CHOOSE_TYPE);
         Scanner scanner = new Scanner(System.in);
         String inputType = scanner.nextLine();
 
-        Log.log(TYPE_YOUR_PHRASE);
+        LogUtils.log(TYPE_YOUR_PHRASE);
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         String phrase = in.readLine();
 
@@ -43,7 +41,7 @@ public class InvertedIndex {
             advancedIndex.findAdvanced(phrase);
         }
         else {
-            Log.logError(NO_SUCH_TYPE);
+            LogUtils.logError(NO_SUCH_TYPE);
             ExitUtils.exit();
         }
     }

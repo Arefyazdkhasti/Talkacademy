@@ -1,7 +1,7 @@
 package Phase1;
 
 
-import Phase1.utility.Log;
+import Phase1.utility.LogUtils;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -37,7 +37,7 @@ class AdvancedIndex extends Index {
                 printSearchResult(res, searchesSources);
             }
         } catch (NullPointerException e) {
-            Log.logCatchExe("Not found " + e.toString());
+            LogUtils.logCatchExe("Not found " + e.toString());
             //TODO what is the problem
             e.printStackTrace();
         }
@@ -53,7 +53,7 @@ class AdvancedIndex extends Index {
             if (item != null) {
                 switch (item.charAt(0)) {
                     case PLUS:
-                        Log.logInfo("+ =>" + item);
+                        LogUtils.logInfo("+ =>" + item);
                         //remove + from item and add to loved
                         List<String> love = find(item.substring(1));
                         if (love != null)
@@ -61,7 +61,7 @@ class AdvancedIndex extends Index {
                         break;
 
                     case MINUS:
-                        Log.logInfo("- =>" + item);
+                        LogUtils.logInfo("- =>" + item);
                         //remove - from item and add to hated
                         List<String> hate = find(item.substring(1));
                         if (hate != null)
@@ -95,10 +95,10 @@ class AdvancedIndex extends Index {
         //remove hatedSource from result
         result.removeAll(hatedSources);
 
-        Log.log("Final search result:");
+        LogUtils.log("Final search result:");
         //print result
         for (String sourceFile : result) {
-            Log.log("\t" + sourceFile);
+            LogUtils.log("\t" + sourceFile);
         }
     }
 }
