@@ -1,4 +1,4 @@
-package Phase1.utility;
+package InvertedIndex.utility;
 
 import java.io.File;
 import java.util.ArrayList;

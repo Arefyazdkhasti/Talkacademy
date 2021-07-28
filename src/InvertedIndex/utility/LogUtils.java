@@ -1,4 +1,4 @@
-package Phase1.utility;
+package InvertedIndex.utility;
 
 
 public class LogUtils {
@@ -6,8 +6,6 @@ public class LogUtils {
     public static void logError(String str) {
         System.out.println("Error-> " + str);
     }
-
-
     public static void logInfo(String str) {
         System.out.println("Info-> " + str);
     }

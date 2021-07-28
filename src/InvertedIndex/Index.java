@@ -1,23 +1,23 @@
-package Phase1;
+package InvertedIndex;
 
 
-import Phase1.utility.FileReaderUtil;
-import Phase1.utility.LogUtils;
+import InvertedIndex.utility.FileReaderUtil;
+import InvertedIndex.utility.LogUtils;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-class Index {
+public class Index {
 
-    HashMap<String, HashSet<String>> index;
+    public HashMap<String, HashSet<String>> index;
 
-    Index() {
+    public Index() {
         index = new HashMap<>();
     }
 
-    void buildIndex(List<String> files) {
+    public void buildIndex(List<String> files) {
         if (files == null) return;
 
         if (!files.isEmpty()) {
@@ -34,20 +34,21 @@ class Index {
                 }
             }
         }
-
     }
 
-    private void fillIndex(String[] words, String file) {
+    public HashMap<String, HashSet<String>> fillIndex(String[] words, String file) {
         for (String word : words) {
             word = word.toLowerCase();
             if (!index.containsKey(word))
                 index.put(word, new HashSet<>());
             index.get(word).add(file);
         }
+        //make return type for the test file
+        return index;
     }
 
 
-    List<String> find(String phrase) {
+    public List<String> find(String phrase) {
 
         String[] words = phrase.split("\\W+");
         List<String> sourceFiles = new ArrayList<>();
@@ -69,7 +70,7 @@ class Index {
         }
     }
 
-    void printSearchResult(HashSet<String> res, List<String> sourceFiles) {
+    public void printSearchResult(HashSet<String> res, List<String> sourceFiles) {
         if (res.size() == 0) {
             LogUtils.log("Not found");
         }

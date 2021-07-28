@@ -1,6 +1,6 @@
-package Phase1;
+package InvertedIndex;
 
-import Phase1.utility.*;
+import InvertedIndex.utility.*;
 
 import java.io.*;
 import java.util.*;

@@ -1,12 +1,12 @@
-package Phase1;
+package InvertedIndex;
 
 
-import Phase1.utility.LogUtils;
+import InvertedIndex.utility.LogUtils;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-class AdvancedIndex extends Index {
+public class AdvancedIndex extends Index {
     //advanced search list
     private List<String> lovedSources = new ArrayList<>();
     private List<String> hatedSources = new ArrayList<>();
@@ -16,7 +16,7 @@ class AdvancedIndex extends Index {
     private static final char PLUS = '+';
     private static final char MINUS = '-';
 
-    void findAdvanced(String phrase) {
+    public void findAdvanced(String phrase) {
         if (phrase == null) return;
 
         String[] words = phrase.split(" ");
@@ -37,16 +37,16 @@ class AdvancedIndex extends Index {
                 printSearchResult(res, searchesSources);
             }
         } catch (NullPointerException e) {
-            LogUtils.logCatchExe("Not found " + e.toString());
+            LogUtils.logCatchExe("Not found : " + e.toString());
             //TODO what is the problem
             e.printStackTrace();
         }
 
-        printAdvancedSearchResult();
+        printAdvancedSearchResult(lovedSources,hatedSources,searchesSources);
     }
 
 
-    private List<String> discoverWords(String[] words) {
+    public List<String> discoverWords(String[] words) {
 
         List<String> finalWords = new ArrayList<>();
         for (String item : words) {
@@ -77,13 +77,13 @@ class AdvancedIndex extends Index {
         return finalWords;
     }
 
-    private List<String> removeDuplicate(List<String> list) {
+    public List<String> removeDuplicate(List<String> list) {
         //remove duplication
         List<String> result = list.stream().distinct().collect(Collectors.toList());;
         return result;
     }
 
-    private void printAdvancedSearchResult() {
+    public void printAdvancedSearchResult(List<String> lovedSources,List<String> hatedSources,List<String> searchesSources) {
         //make result list
         List<String> result = new ArrayList<>(searchesSources);
 
