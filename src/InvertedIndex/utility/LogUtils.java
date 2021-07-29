@@ -3,9 +3,6 @@ package InvertedIndex.utility;
 
 public class LogUtils {
 
-    public static void logError(String str) {
-        System.out.println("Error-> " + str);
-    }
     public static void logInfo(String str) {
         System.out.println("Info-> " + str);
     }
@@ -18,7 +15,4 @@ public class LogUtils {
         System.out.println(str);
     }
 
-    public static void logInt(int number){
-        System.out.println(number);
-    }
 }

@@ -19,7 +19,7 @@ public class FileReaderUtil {
                 }
             }
         } else {
-            LogUtils.logError("There is no file in this directory");
+            LogUtils.log("Error -> There is no file in this directory");
         }
         return files;
     }

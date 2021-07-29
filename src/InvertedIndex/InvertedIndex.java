@@ -30,19 +30,18 @@ public class InvertedIndex {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         String phrase = in.readLine();
 
-        if (SIMPLE_SEARCH.equals(inputType)){
+        if (SIMPLE_SEARCH.equals(inputType)) {
             //build index
             simpleIndex.buildIndex(fileList);
             simpleIndex.find(phrase);
-        }
-        else if (ADVANCED_SEARCH.equals(inputType)){
+        } else if (ADVANCED_SEARCH.equals(inputType)) {
             //build index
             advancedIndex.buildIndex(fileList);
             advancedIndex.findAdvanced(phrase);
-        }
-        else {
-            LogUtils.logError(NO_SUCH_TYPE);
-            ExitUtils.exit();
+        } else {
+            LogUtils.log("Error-> " + NO_SUCH_TYPE);
+            //ExitUtils.exit();
+            System.exit(0);
         }
     }
 

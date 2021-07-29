@@ -34,11 +34,11 @@ public class LogUtilsTest {
 
 
     @Test
-    public void testErrorLog(){
+    public void testCatchExpLog(){
         String s = "test message";
         ByteArrayOutputStream sink = new ByteArrayOutputStream();
         System.setOut(new PrintStream(sink, true));
-        LogUtils.logError(s);
+        LogUtils.logCatchExe(s);
         assertThat(new String(sink.toByteArray()), containsString("Error-> "+ s));
     }
 }

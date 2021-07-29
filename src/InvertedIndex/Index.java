@@ -17,8 +17,8 @@ public class Index {
         index = new HashMap<>();
     }
 
-    public void buildIndex(List<String> files) {
-        if (files == null) return;
+    public HashMap<String, HashSet<String>> buildIndex(List<String> files) {
+        if (files == null) return null;
 
         if (!files.isEmpty()) {
             for (String _file : files) {
@@ -34,6 +34,7 @@ public class Index {
                 }
             }
         }
+        return index;
     }
 
     public HashMap<String, HashSet<String>> fillIndex(String[] words, String file) {

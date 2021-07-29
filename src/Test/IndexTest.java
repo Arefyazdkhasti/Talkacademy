@@ -10,19 +10,22 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.*;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class IndexTest {
 
     private Index index = new Index();
 
-    /*@Mock
-    HashMap<String, HashSet<String>> mainIndex = new HashMap<>();
-*/
     @Test
     public void testBuildIndex() {
-        index.buildIndex(Arrays.asList("57110", "16"));
+        HashMap<String, HashSet<String>> result= index.buildIndex(Arrays.asList("57110", "16"));
+        System.out.println(result);
+
+        //make index with 57110 file which should contains there words in it
+        assertTrue(result.containsKey("glucocerebroside"));
+        assertTrue(result.containsKey("genzyme"));
+        assertTrue(result.containsKey("symptoms"));
     }
 
     @Test
@@ -31,12 +34,21 @@ public class IndexTest {
         HashMap<String, HashSet<String>> result =  index.fillIndex(words,"57110");
         System.out.println(result);
         assertTrue(result.containsKey("test1"));
+
+        HashSet<String> value = new HashSet<>();
+        value.add("57110");
+        assertEquals(value,result.get("test1"));
     }
 
-    //TODO how to test this ? index is empty and cant find anything in the test
+
     @Test
     public void testFind() {
-        index.find("test");
+        //fill index with call buildIndex fun then find a word
+        index.buildIndex(Arrays.asList("57110","59063","58047"));
+        List<String> result = index.find("symptoms");
+        //symptoms is is in 57100 but not in 58047
+        assertTrue(result.contains("57110"));
+        assertFalse(result.contains("58047"));
     }
 
     @Test
@@ -50,44 +62,4 @@ public class IndexTest {
         list.add("test3");
         index.printSearchResult(s,list);
     }
-
-    /*@Mock
-    Index index = new Index();
-
-    @Mock
-    List<String> files;
-    @Mock
-    Index index = new Index();
-    @Mock
-    HashSet<String> set;
-
-    @Before
-    public void serUP() {
-        files = new ArrayList<>();
-        files.add("57110");
-        files.add("58043");
-        files.add("58044");
-        files.add("58045");
-    }
-
-    @Test
-    public void buildIndexTest() {
-        List<String> files = new ArrayList<>();
-        files.add("57110");
-        files.add("58043");
-        files.add("58044");
-        files.add("58045");
-        //doNothing().when(index).buildIndex(files);
-        verify(index).buildIndex(files);
-    }
-
-    @Test
-    public void fillIndexTest(){
-        verify(index).fillIndex(new String[]{"hello there is stm to say","yey"},"112");
-    }
-
-    @Test
-    public void testFind() {
-        List<String> result = index.find("live");
-    }*/
 }

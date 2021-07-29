@@ -10,10 +10,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import static org.mockito.Mockito.*;
 
@@ -22,17 +19,25 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
 public class AdvancedIndexTest {
 
-    private AdvancedIndex advancedIndex= new AdvancedIndex();
+    private AdvancedIndex advancedIndex;
 
-    @Mock
+    @InjectMocks
     Index index;
     @Mock
-    List<String> lovedSource = new ArrayList<>();
+    List<String> lovedSource;
     @Mock
-    List<String> hateSource = new ArrayList<>();
+    List<String> hateSource;
     @Mock
-    List<String> searchSources = new ArrayList<>();
+    List<String> searchSources;
 
+    @Before
+    public void setUp() {
+        advancedIndex = new AdvancedIndex();
+        index = spy(new Index());
+        lovedSource = new ArrayList<>();
+        hateSource = new ArrayList<>();
+        searchSources = new ArrayList<>();
+    }
 
     @Test
     public void testRemoveDuplicate() {
@@ -57,24 +62,26 @@ public class AdvancedIndexTest {
         hateSource.add("58045");
         searchSources.add("58111");
         advancedIndex.printAdvancedSearchResult(lovedSource, hateSource, searchSources);
-        //verifyNoMoreInteractions(lovedSource);
     }
 
     @Test
-    public void testDiscoverWords(){
-        //TODO make when work properly
-       //assertNotNull(index);
-       //when(index.find("love")).thenReturn(Arrays.asList("57110", "58046"));
-       //when(index.find("hell")).thenReturn(Arrays.asList("57110", "58110"));
-        List<String> result = advancedIndex.discoverWords(new String[]{"live", "-love","+hell"});
+    public void testDiscoverWords() {
+        index.buildIndex(Arrays.asList("57110","59063","58047"));
+
+        doReturn(Arrays.asList("57110", "59063")).when(index).find("love");
+        doReturn(Arrays.asList("57110", "58047")).when(index).find("hell");
+
+        List<String> result = advancedIndex.discoverWords(new String[]{"live", "-love", "+hell"});
         System.out.println(result);
+
         List<String> finalWords = Collections.singletonList("live");
-        assertEquals(finalWords,result);
+        assertEquals(finalWords, result);
     }
 
     @Test
-    public void testFindAdvanced(){
-        //index is null in the body of the function
-        advancedIndex.findAdvanced("test");
+    public void testFindAdvanced() {
+        //fill index and then search fo result
+        advancedIndex.buildIndex(Arrays.asList("57110" ,"59063","58047"));
+        advancedIndex.findAdvanced("hi +primary");
     }
 }
