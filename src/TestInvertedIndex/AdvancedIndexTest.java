@@ -1,4 +1,4 @@
-package Test;
+package TestInvertedIndex;
 
 import InvertedIndex.AdvancedIndex;
 import InvertedIndex.Index;
@@ -9,7 +9,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 import static org.mockito.Mockito.*;

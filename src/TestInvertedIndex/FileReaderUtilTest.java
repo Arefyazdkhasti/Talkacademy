@@ -1,4 +1,4 @@
-package Test;
+package TestInvertedIndex;
 
 
 import static org.junit.Assert.assertFalse;
