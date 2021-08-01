@@ -71,14 +71,18 @@ public class Index {
         }
     }
 
-    public void printSearchResult(HashSet<String> res, List<String> sourceFiles) {
+    public List<String> printSearchResult(HashSet<String> res, List<String> sourceFiles) {
+        List<String> result = new ArrayList<>();
+
         if (res.size() == 0) {
             LogUtils.log("Not found");
         }
         System.out.println("Found in: ");
         for (String num : res) {
             LogUtils.log("\t\tFile Number:" + num);
+            result.add(num);
             sourceFiles.add(num);
         }
+        return result;
     }
 }

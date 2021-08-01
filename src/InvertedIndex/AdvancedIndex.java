@@ -16,8 +16,8 @@ public class AdvancedIndex extends Index {
     private static final char PLUS = '+';
     private static final char MINUS = '-';
 
-    public void findAdvanced(String phrase) {
-        if (phrase == null) return;
+    public List<String> findAdvanced(String phrase) {
+        if (phrase == null) return null;
 
         String[] words = phrase.split(" ");
         //words without + and -
@@ -42,7 +42,7 @@ public class AdvancedIndex extends Index {
             e.printStackTrace();
         }
 
-        printAdvancedSearchResult(lovedSources,hatedSources,searchesSources);
+        return printAdvancedSearchResult(lovedSources,hatedSources,searchesSources);
     }
 
 
@@ -83,7 +83,7 @@ public class AdvancedIndex extends Index {
         return result;
     }
 
-    public void printAdvancedSearchResult(List<String> lovedSources,List<String> hatedSources,List<String> searchesSources) {
+    public List<String> printAdvancedSearchResult(List<String> lovedSources,List<String> hatedSources,List<String> searchesSources) {
         //make result list
         List<String> result = new ArrayList<>(searchesSources);
 
@@ -100,5 +100,6 @@ public class AdvancedIndex extends Index {
         for (String sourceFile : result) {
             LogUtils.log("\t" + sourceFile);
         }
+        return result;
     }
 }

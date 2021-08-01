@@ -35,7 +35,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../hamcrest-all-1.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/../jUnit and Mockito/mockito-core-3.11.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -44,7 +44,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../junit-jupiter-api-5.7.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../jUnit and Mockito/junit-platform-commons-1.7.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -53,7 +53,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../mockito-junit-jupiter-3.11.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../jUnit and Mockito/byte-buddy-1.11.3.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -62,7 +62,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../mockito-core-3.11.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../jUnit and Mockito/junit-4.13.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -71,7 +71,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../objenesis-3.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../jUnit and Mockito/junit-jupiter-api-5.7.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -80,7 +80,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../byte-buddy-agent-1.11.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/../jUnit and Mockito/mockito-core-3.10.1-20210512.130628-1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -89,7 +89,52 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../byte-buddy-1.11.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/../jUnit and Mockito/mockito-junit-jupiter-3.11.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../jUnit and Mockito/byte-buddy-agent-1.11.3.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../jUnit and Mockito/hamcrest-all-1.3.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../jUnit and Mockito/apiguardian-api-1.1.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../jUnit and Mockito/objenesis-3.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../jUnit and Mockito/opentest4j-1.2.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

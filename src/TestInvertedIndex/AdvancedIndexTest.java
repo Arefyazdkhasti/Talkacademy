@@ -2,6 +2,7 @@ package TestInvertedIndex;
 
 import InvertedIndex.AdvancedIndex;
 import InvertedIndex.Index;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -60,7 +61,8 @@ public class AdvancedIndexTest {
         lovedSource.add("57110");
         hateSource.add("58045");
         searchSources.add("58111");
-        advancedIndex.printAdvancedSearchResult(lovedSource, hateSource, searchSources);
+        List<String> result = advancedIndex.printAdvancedSearchResult(lovedSource, hateSource, searchSources);
+        assertTrue(result.contains("58111"));
     }
 
     @Test
@@ -78,9 +80,25 @@ public class AdvancedIndexTest {
     }
 
     @Test
+    public void notNullFindAdvancedResult(){
+        advancedIndex.buildIndex(Arrays.asList("57110" ,"59063","58047"));
+        List<String> result = advancedIndex.findAdvanced("hi +primary");
+        assertNotNull(result);
+    }
+
+    @Test
     public void testFindAdvanced() {
         //fill index and then search fo result
         advancedIndex.buildIndex(Arrays.asList("57110" ,"59063","58047"));
-        advancedIndex.findAdvanced("hi +primary");
+        List<String> result = advancedIndex.findAdvanced("hi +primary");
+        assertTrue(result.contains("58047"));
+        assertFalse(result.contains("59063"));
+    }
+
+    @After
+    public void finish(){
+        lovedSource.clear();
+        hateSource.clear();
+        searchSources.clear();
     }
 }

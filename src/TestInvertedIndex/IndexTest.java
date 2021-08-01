@@ -1,6 +1,7 @@
 package TestInvertedIndex;
 
 import InvertedIndex.Index;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -12,7 +13,12 @@ import static org.junit.Assert.*;
 @RunWith(MockitoJUnitRunner.class)
 public class IndexTest {
 
-    private Index index = new Index();
+    private Index index;
+
+    @Before
+    public void setup(){
+        index  = new Index();
+    }
 
     @Test
     public void testBuildIndex() {
@@ -57,6 +63,9 @@ public class IndexTest {
         list.add("test1");
         list.add("test2");
         list.add("test3");
-        index.printSearchResult(s,list);
+        List<String> result = index.printSearchResult(s,list);
+
+        assertTrue(result.contains("57110"));
+        assertFalse(result.contains("592"));
     }
 }
