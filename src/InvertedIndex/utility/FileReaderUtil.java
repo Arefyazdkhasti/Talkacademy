@@ -1,7 +1,4 @@
-package Phase1.utility;
-
-import Phase1.Index;
-import Phase1.InvertedIndex;
+package InvertedIndex.utility;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -22,7 +19,7 @@ public class FileReaderUtil {
                 }
             }
         } else {
-            Log.logError("There is no file in this directory");
+            LogUtils.log("Error -> There is no file in this directory");
         }
         return files;
     }

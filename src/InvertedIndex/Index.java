@@ -1,25 +1,24 @@
-package Phase1;
+package InvertedIndex;
 
 
-import Phase1.utility.FileReaderUtil;
-import Phase1.utility.Log;
+import InvertedIndex.utility.FileReaderUtil;
+import InvertedIndex.utility.LogUtils;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
 public class Index {
 
-    HashMap<String, HashSet<String>> index;
+    public HashMap<String, HashSet<String>> index;
 
-    Index() {
+    public Index() {
         index = new HashMap<>();
     }
 
-    void buildIndex(List<String> files) {
-        if (files == null) return;
+    public HashMap<String, HashSet<String>> buildIndex(List<String> files) {
+        if (files == null) return null;
 
         if (!files.isEmpty()) {
             for (String _file : files) {
@@ -31,24 +30,26 @@ public class Index {
                         fillIndex(words, _file);
                     }
                 } catch (IOException e) {
-                    Log.logCatchExe("File " + _file + " not found. Skip it");
+                    LogUtils.logCatchExe("File " + _file + " not found. Skip it");
                 }
             }
         }
-
+        return index;
     }
 
-    private void fillIndex(String[] words, String file) {
+    public HashMap<String, HashSet<String>> fillIndex(String[] words, String file) {
         for (String word : words) {
             word = word.toLowerCase();
             if (!index.containsKey(word))
                 index.put(word, new HashSet<>());
             index.get(word).add(file);
         }
+        //make return type for the test file
+        return index;
     }
 
 
-    List<String> find(String phrase) {
+    public List<String> find(String phrase) {
 
         String[] words = phrase.split("\\W+");
         List<String> sourceFiles = new ArrayList<>();
@@ -65,19 +66,23 @@ public class Index {
             return sourceFiles;
 
         } catch (NullPointerException e) {
-            Log.logCatchExe("Not found " + e.toString());
+            LogUtils.logCatchExe("Not found " + e.toString());
             return null;
         }
     }
 
-    void printSearchResult(HashSet<String> res, List<String> sourceFiles) {
+    public List<String> printSearchResult(HashSet<String> res, List<String> sourceFiles) {
+        List<String> result = new ArrayList<>();
+
         if (res.size() == 0) {
-            Log.log("Not found");
+            LogUtils.log("Not found");
         }
         System.out.println("Found in: ");
         for (String num : res) {
-            Log.log("\t\tFile Number:" + num);
+            LogUtils.log("\t\tFile Number:" + num);
+            result.add(num);
             sourceFiles.add(num);
         }
+        return result;
     }
 }

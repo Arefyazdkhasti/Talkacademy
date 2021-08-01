@@ -1,8 +1,6 @@
-package Phase1;
+package InvertedIndex;
 
-import Phase1.utility.ExitUtils;
-import Phase1.utility.FileReaderUtil;
-import Phase1.utility.Log;
+import InvertedIndex.utility.*;
 
 import java.io.*;
 import java.util.*;
@@ -24,27 +22,26 @@ public class InvertedIndex {
         List<String> fileList = FileReaderUtil.readFiles();
 
         //choose type
-        Log.log(CHOOSE_TYPE);
+        LogUtils.log(CHOOSE_TYPE);
         Scanner scanner = new Scanner(System.in);
         String inputType = scanner.nextLine();
 
-        Log.log(TYPE_YOUR_PHRASE);
+        LogUtils.log(TYPE_YOUR_PHRASE);
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         String phrase = in.readLine();
 
-        if (SIMPLE_SEARCH.equals(inputType)){
+        if (SIMPLE_SEARCH.equals(inputType)) {
             //build index
             simpleIndex.buildIndex(fileList);
             simpleIndex.find(phrase);
-        }
-        else if (ADVANCED_SEARCH.equals(inputType)){
+        } else if (ADVANCED_SEARCH.equals(inputType)) {
             //build index
             advancedIndex.buildIndex(fileList);
             advancedIndex.findAdvanced(phrase);
-        }
-        else {
-            Log.logError(NO_SUCH_TYPE);
-            ExitUtils.exit();
+        } else {
+            LogUtils.log("Error-> " + NO_SUCH_TYPE);
+            //ExitUtils.exit();
+            System.exit(0);
         }
     }
 
